@@ -95,7 +95,7 @@ namespace Microsoft.Maui.Graphics.Xaml
                     if (_fillPaint.PaintType == PaintType.RadialGradient)
                     {
                         var radius = Geometry.GetDistance(_fillPaintX1, _fillPaintY1, _fillPaintX2, _fillPaintY2);
-                        var brush = new RadialGradientBrush {MappingMode = BrushMappingMode.Absolute};
+                        var brush = new RadialGradientBrush { MappingMode = BrushMappingMode.Absolute };
                         brush.GradientOrigin = brush.Center = new global::System.Windows.Point(_fillPaintX1, _fillPaintY1);
                         brush.RadiusX = radius;
                         brush.RadiusY = radius;
@@ -223,7 +223,7 @@ namespace Microsoft.Maui.Graphics.Xaml
         {
             get
             {
-                if (_effect == null && _shadowOffset != null)
+                if (_effect == null && _shadowOffset != default)
                 {
                     // MP! was:
                     //if (_shadowOffset.Width != null)
@@ -383,7 +383,7 @@ namespace Microsoft.Maui.Graphics.Xaml
         public void XamlScale(float sx, float sy)
         {
             InitGroup();
-            var transform = new ScaleTransform((double) sx, (double) sy);
+            var transform = new ScaleTransform((double)sx, (double)sy);
             _transformGroup.Children.Add(transform);
         }
 

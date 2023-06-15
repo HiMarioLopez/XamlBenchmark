@@ -29,20 +29,20 @@ namespace Microsoft.Maui.Graphics.Xaml
             return new SolidColorBrush(target.AsColor());
         }
 
-        public static PointF AsPointF(this PointerPoint target)
-        {
-            var position = target.Position;
-            return new PointF((float)position.X, (float)position.Y);
-        }
+        //public static PointF AsPointF(this PointerPoint target)
+        //{
+        //    var position = target.Position;
+        //    return new PointF((float)position.X, (float)position.Y);
+        //}
 
         public static PointF AsPointF(this global::Windows.Foundation.Point target)
         {
             return new PointF((float)target.X, (float)target.Y);
         }
-        
+
         public static global::Windows.Foundation.Point AsPoint(this PointF target)
         {
-            return new global::Windows.Foundation.Point(target.X, target.Y);    
+            return new global::Windows.Foundation.Point(target.X, target.Y);
         }
 
         public static global::Windows.Foundation.Point AsPoint(this PointF target, float ppu)
@@ -70,7 +70,7 @@ namespace Microsoft.Maui.Graphics.Xaml
                 }
                 else if (type == PathOperation.Line)
                 {
-                    var lineSegment = new LineSegment {Point = target[pointIndex++].AsPoint(scale)};
+                    var lineSegment = new LineSegment { Point = target[pointIndex++].AsPoint(scale) };
                     figure.Segments.Add(lineSegment);
                 }
                 else if (type == PathOperation.Quad)
@@ -133,7 +133,7 @@ namespace Microsoft.Maui.Graphics.Xaml
                         {
                             Point = startPoint.AsPoint()
                         };
-                        figure.Segments.Add(lineSegment);                       
+                        figure.Segments.Add(lineSegment);
                     }
 
                     var arcSegment = new ArcSegment()
@@ -162,7 +162,7 @@ namespace Microsoft.Maui.Graphics.Xaml
             }
             var values = new float[6];
             transform.GetMatrix(values);
-            return new MatrixTransform() { Matrix = new Matrix(values[0], values[1], values[2], values[3],values[4], values[5])};
+            return new MatrixTransform() { Matrix = new Matrix(values[0], values[1], values[2], values[3], values[4], values[5]) };
         }
     }
 }

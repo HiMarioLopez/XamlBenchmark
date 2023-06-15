@@ -14,7 +14,6 @@ This is not an exaustive performance test, but it does touch on the core capabil
 
 ## Results
 
-## (  UWP  ) Elapsed: 11151 ms, Passes: 1200
 ## (  WPF  ) Elapsed: 16470 ms, Passes: 1200
 ## ( WinUI ) Elapsed: 32407 ms, Passes: 1200
 
