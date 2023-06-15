@@ -13,7 +13,7 @@ namespace GraphicsTester.Scenarios
         {
             canvas.StrokeSize = 1;
             canvas.StrokeColor = Colors.Blue;
-            canvas.FontName = "Arial";
+            canvas.Font = new Font(name: "Arial", weight: FontWeights.Regular);
             canvas.FontSize = 12f;
 
             const string longText =
@@ -26,7 +26,7 @@ namespace GraphicsTester.Scenarios
 
                 canvas.DrawRectangle(dx, dy, 190, 140);
 
-                var verticalAlignment = (VerticalAlignment) y;
+                var verticalAlignment = (VerticalAlignment)y;
 
                 canvas.DrawString(
                     longText,

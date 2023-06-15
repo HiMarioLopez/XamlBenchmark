@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "XamlBenchmarkUWP (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "XamlBenchmarkUWP (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

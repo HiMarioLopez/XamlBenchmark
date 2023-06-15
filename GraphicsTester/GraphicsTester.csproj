@@ -1,26 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\royals.jpg" />
-    <None Remove="Resources\royals.png" />
-    <None Remove="Resources\swirl_pattern.jpg" />
-    <None Remove="Resources\swirl_pattern.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\royals.jpg" />
-    <EmbeddedResource Include="Resources\royals.png" />
-    <EmbeddedResource Include="Resources\swirl_pattern.jpg" />
-    <EmbeddedResource Include="Resources\swirl_pattern.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Maui.Graphics.Text.Markdig\Microsoft.Maui.Graphics.Text.Markdig.csproj" />
-    <ProjectReference Include="..\Microsoft.Maui.Graphics\Microsoft.Maui.Graphics.csproj" />
-  </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows10.0.20348.0</TargetFramework>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Resources\royals.jpg" />
+		<None Remove="Resources\royals.png" />
+		<None Remove="Resources\swirl_pattern.jpg" />
+		<None Remove="Resources\swirl_pattern.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\royals.jpg" />
+		<EmbeddedResource Include="Resources\royals.png" />
+		<EmbeddedResource Include="Resources\swirl_pattern.jpg" />
+		<EmbeddedResource Include="Resources\swirl_pattern.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Graphics" Version="8.0.0-preview.5.8529" />
+		<PackageReference Include="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop" Version="8.0.0-preview.5.8529" />
+		<PackageReference Include="Microsoft.Maui.Graphics.Text.Markdig" Version="8.0.0-preview.5.8529" />
+	</ItemGroup>
 </Project>

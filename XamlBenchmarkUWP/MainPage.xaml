@@ -28,6 +28,6 @@
         </StackPanel>
         <ListView Grid.Row="1" x:Name="List" />
         <!--<GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />-->
-        <Canvas x:Name="Canvas" Grid.Row="1" Grid.Column="2" />
+        <!--<GraphicsView x:Name="Canvas" Grid.Row="1" Grid.Column="2" />-->
     </Grid>
 </Page>

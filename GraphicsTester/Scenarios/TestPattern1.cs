@@ -33,7 +33,7 @@ namespace GraphicsTester.Scenarios
             canvas.DrawRoundedRectangle(700, 0, 100, 50, 25);
             canvas.DrawRoundedRectangle(800, 0, 100, 25, 25);
 
-            // 
+            //
             // FillXXXX Methods
             //
 
@@ -70,7 +70,7 @@ namespace GraphicsTester.Scenarios
             path.LineTo(600, 450);
             path.Close();
             canvas.DrawPath(path);
-            
+
             //
             // Stroke Color and Line Caps
             //
@@ -157,22 +157,21 @@ namespace GraphicsTester.Scenarios
             //
             // Linear Gradient Fill
             //
-            
-            var vPaint = new Paint
+
+            GradientPaint vPaint = new LinearGradientPaint
             {
-                PaintType = PaintType.LinearGradient,
                 StartColor = Colors.White,
                 EndColor = Colors.Black
             };
 
-            canvas.SetFillPaint(vPaint, 50, 700, 150, 750);
+            canvas.SetFillPaint(vPaint, new RectF(50, 700, 150, 750));
             canvas.FillRectangle(50, 700, 100, 50);
 
-            canvas.SetFillPaint(vPaint, 200, 700, 300, 700);
+            canvas.SetFillPaint(vPaint, new RectF(200, 700, 300, 700));
             canvas.FillEllipse(200, 700, 100, 50);
 
             vPaint.AddOffset(.5f, Colors.IndianRed);
-            canvas.SetFillPaint(vPaint, 350, 700, 450, 700);
+            canvas.SetFillPaint(vPaint, new RectF(350, 700, 450, 700));
             canvas.FillRoundedRectangle(350, 700, 100, 50, 25);
 
             path = new PathF();
@@ -181,28 +180,27 @@ namespace GraphicsTester.Scenarios
             path.LineTo(600, 750);
             path.Close();
 
-            canvas.SetFillPaint(vPaint, 500, 700, 600, 700);
+            canvas.SetFillPaint(vPaint, new RectF(500, 700, 600, 700));
             canvas.FillPath(path);
 
             //
             // Radial Gradient Fill
             //
-            
-            vPaint = new Paint
+
+            vPaint = new RadialGradientPaint
             {
-                PaintType = PaintType.RadialGradient,
                 StartColor = Colors.White,
-                EndColor = Colors.Black
+                EndColor = Colors.Black,
             };
 
-            canvas.SetFillPaint(vPaint, 100, 825, 150, 850);
+            canvas.SetFillPaint(vPaint, new RectF(100, 825, 150, 850));
             canvas.FillRectangle(50, 800, 100, 50);
 
-            canvas.SetFillPaint(vPaint, 250, 825, 300, 800);
+            canvas.SetFillPaint(vPaint, new RectF(250, 825, 300, 800));
             canvas.FillEllipse(200, 800, 100, 50);
 
             vPaint.AddOffset(.5f, Colors.IndianRed);
-            canvas.SetFillPaint(vPaint, 400, 825, 450, 800);
+            canvas.SetFillPaint(vPaint, new RectF(400, 825, 450, 800));
             canvas.FillRoundedRectangle(350, 800, 100, 50, 25);
 
             path = new PathF();
@@ -211,7 +209,7 @@ namespace GraphicsTester.Scenarios
             path.LineTo(600, 850);
             path.Close();
 
-            canvas.SetFillPaint(vPaint, 550, 825, 600, 800);
+            canvas.SetFillPaint(vPaint, new RectF(550, 825, 600, 800));
             canvas.FillPath(path);
 
             //
@@ -388,10 +386,10 @@ namespace GraphicsTester.Scenarios
 
                     canvas.DrawRectangle(dx, dy, 190, 140);
 
-                    var vHorizontalAlignment = (HorizontalAlignment) x;
-                    var vVerticalAlignment = (VerticalAlignment) y;
+                    var vHorizontalAlignment = (HorizontalAlignment)x;
+                    var vVerticalAlignment = (VerticalAlignment)y;
 
-                    canvas.FontName = "Arial";
+                    canvas.Font = new Font("Arial");
                     canvas.FontSize = 12f;
                     canvas.DrawString(vTextLong, dx, dy, 190, 140, vHorizontalAlignment, vVerticalAlignment);
                 }
@@ -409,10 +407,10 @@ namespace GraphicsTester.Scenarios
 
                     canvas.DrawRectangle(dx, dy, 190, 140);
 
-                    var vHorizontalAlignment = (HorizontalAlignment) x;
-                    var vVerticalAlignment = (VerticalAlignment) y;
+                    var vHorizontalAlignment = (HorizontalAlignment)x;
+                    var vVerticalAlignment = (VerticalAlignment)y;
 
-                    canvas.FontName = "Arial";
+                    canvas.Font = new Font("Arial");
                     canvas.FontSize = 12f;
                     canvas.DrawString(vTextShort, dx, dy, 190, 140, vHorizontalAlignment, vVerticalAlignment);
                 }
@@ -428,9 +426,9 @@ namespace GraphicsTester.Scenarios
                 canvas.DrawRectangle(dx, dy, 190, 140);
 
                 const HorizontalAlignment vHorizontalAlignment = HorizontalAlignment.Left;
-                var vVerticalAlignment = (VerticalAlignment) y;
+                var vVerticalAlignment = (VerticalAlignment)y;
 
-                canvas.FontName = "Arial";
+                canvas.Font = new Font("Arial");
                 canvas.FontSize = 12f;
                 canvas.DrawString(
                     vTextLong,

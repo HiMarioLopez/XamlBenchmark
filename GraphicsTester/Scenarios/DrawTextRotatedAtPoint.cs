@@ -43,9 +43,12 @@ namespace GraphicsTester.Scenarios
             }
 
             canvas.SaveState();
-            canvas.SetToBoldSystemFont();
+            //canvas.SetToBoldSystemFont();
+            canvas.Font = new Font(name: "Arial", weight: FontWeights.Bold);
             canvas.DrawString("Bold System Font", 50, 350, HorizontalAlignment.Left);
-            canvas.SetToSystemFont();
+
+            //canvas.SetToSystemFont();
+            canvas.Font = new Font(name: "Arial", weight: FontWeights.Regular);
             canvas.DrawString("System Font", 50, 400, HorizontalAlignment.Left);
             canvas.RestoreState();
 

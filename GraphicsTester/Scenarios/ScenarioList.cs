@@ -17,7 +17,7 @@ namespace GraphicsTester.Scenarios
                         new DrawLines(),
                         new DrawLinesScaled(),
                         new DrawRectangles(),
-                        new DrawEllipses(),             
+                        new DrawEllipses(),
                         new DrawRoundedRectangles(),
                         new DrawArcs(),
                         new DrawArcs(true),

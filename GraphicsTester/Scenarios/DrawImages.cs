@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Graphics;
+using System.IO;
 using System.Reflection;
 
 namespace GraphicsTester.Scenarios
@@ -16,7 +17,7 @@ namespace GraphicsTester.Scenarios
             var assembly = GetType().GetTypeInfo().Assembly;
             using (var stream = assembly.GetManifestResourceStream("GraphicsTester.Resources.royals.png"))
             {
-                image = GraphicsPlatform.CurrentService.LoadImageFromStream(stream);
+                image = GraphicsPlatform.CurrentService.LoadImageFromStream(stream, ImageFormat.Jpeg);
             }
 
             if (image != null)

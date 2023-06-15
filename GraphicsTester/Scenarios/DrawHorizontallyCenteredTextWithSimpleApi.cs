@@ -14,7 +14,7 @@ namespace GraphicsTester.Scenarios
             canvas.SaveState();
 
             canvas.FillColor = Colors.CornflowerBlue;
-            canvas.FontName = "Arial";
+            canvas.Font = new Font(name: "Arial");
             canvas.FontSize = 12f;
 
             canvas.Translate(0, 10);
@@ -29,7 +29,7 @@ namespace GraphicsTester.Scenarios
             canvas.DrawString("Arial - Right", 100, 10, HorizontalAlignment.Right);
             canvas.FillCircle(100, 10, 2);
 
-            canvas.SetToSystemFont();
+            //canvas.SetToSystemFont();
 
             canvas.Translate(0, 30);
             canvas.DrawString("System - Left", 100, 10, HorizontalAlignment.Left);

@@ -1,146 +1,142 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Diagnostics;
+//using System.Threading.Tasks;
+//using Windows.ApplicationModel.DataTransfer;
+//using Microsoft.Maui.Graphics;
+//using GraphicsTester.Scenarios;
+//using Microsoft.UI.Xaml;
+//using System.Drawing;
+//using Microsoft.UI.Xaml.Media;
+//using Microsoft.UI.Xaml.Controls;
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.DataTransfer;
+//namespace XamlBenchmarkUWP
+//{
+//    public sealed partial class MainPage : Page
+//    {
+//        private readonly GraphicsDrawable canvas = new GraphicsDrawable();
+//        const int TestIterations = GlobalVariables.TestCount;
+//        int testIncrement = -1;
+//        Stopwatch timer = new Stopwatch();
 
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Xaml;
+//        public MainPage()
+//        {
+//            this.InitializeComponent();
+//            Initialize();
+//        }
 
-using GraphicsTester.Scenarios;
+//        public void Initialize()
+//        {
+//            canvas.Canvas = Canvas;
 
-namespace XamlBenchmarkUWP
-{
-    public sealed partial class MainPage : Page
-    {
-        private readonly XamlCanvas canvas = new XamlCanvas();
-        private IDrawable drawable;
-        const int TestIterations = GlobalVariables.TestCount;
-        int testIncrement = -1;
-        Stopwatch timer = new Stopwatch();
+//            foreach (var scenario in ScenarioList.Scenarios)
+//            {
+//                List.Items.Add(scenario);
+//            }
 
-        public MainPage()
-        {
-            this.InitializeComponent();
-            Initialize();
-        }
+//            List.SelectedIndex = 0;
+//            List.SelectionChanged += (source, args) => Drawable = List.SelectedItem as IDrawable;
+//            Drawable = List.SelectedItem as IDrawable;
+//            this.SizeChanged += (source, args) => Draw();
 
-        public void Initialize()
-        {
-            canvas.Canvas = Canvas;
+//            CompositionTarget.Rendering += OnRendering;
+//        }
 
-            foreach (var scenario in ScenarioList.Scenarios)
-            {
-                List.Items.Add(scenario);
-            }
+//        public IDrawable Drawable
+//        {
+//            get => drawable;
+//            set
+//            {
+//                drawable = value;
+//                Draw();
+//            }
+//        }
 
-            List.SelectedIndex = 0;
-            List.SelectionChanged += (source, args) => Drawable = List.SelectedItem as IDrawable;
-            Drawable = List.SelectedItem as IDrawable;
-            this.SizeChanged += (source, args) => Draw();
+//        private void Draw()
+//        {
+//            if (drawable != null)
+//            {
+//                using (canvas.CreateSession())
+//                {
+//                    drawable.Draw(canvas, new RectangleF(0, 0, (float)Canvas.Width, (float)Canvas.Height));
+//                }
+//            }
+//        }
 
-            CompositionTarget.Rendering += OnRendering;
-        }
+//        private void AddToClipboard()
+//        {
+//            DataPackageView dataPkgView = Clipboard.GetContent();
 
-        public IDrawable Drawable
-        {
-            get => drawable;
-            set
-            {
-                drawable = value;
-                Draw();
-            }
-        }
+//            if (dataPkgView.Contains(StandardDataFormats.Text))
+//            {
+//                Task<string> task = dataPkgView.GetTextAsync().AsTask();
+//                try { task.RunSynchronously(); } catch (InvalidOperationException) { }
+//                string fullResult = task.Result;
+//                dataPkgView.ReportOperationCompleted(DataPackageOperation.Copy);
 
-        private void Draw()
-        {
-            if (drawable != null)
-            {
-                using (canvas.CreateSession())
-                {
-                    drawable.Draw(canvas, new RectangleF(0, 0, (float)Canvas.Width, (float)Canvas.Height));
-                }
-            }
-        }
+//                string testResult = $"(  UWP  ) Elapsed: {Elapsed.Text}, Passes: {Passes.Text}";
 
-        private void AddToClipboard()
-        {
-            DataPackageView dataPkgView = Clipboard.GetContent();
+//                var dataPkg = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 
-            if (dataPkgView.Contains(StandardDataFormats.Text))
-            {
-                Task<string> task = dataPkgView.GetTextAsync().AsTask();
-                try { task.RunSynchronously(); } catch (InvalidOperationException) { }
-                string fullResult = task.Result;
-                dataPkgView.ReportOperationCompleted(DataPackageOperation.Copy);
+//                if (string.IsNullOrEmpty(fullResult))
+//                    dataPkg.SetText($"{testResult}\n");
+//                else
+//                    dataPkg.SetText($"{fullResult}\n{testResult}\n");
 
-                string testResult = $"(  UWP  ) Elapsed: {Elapsed.Text}, Passes: {Passes.Text}";
+//                Clipboard.SetContent(dataPkg);
+//            }
+//        }
 
-                var dataPkg = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+//        private void OnRendering(object sender, object e)
+//        {
+//            if (testIncrement != -1)
+//            {
+//                int step = testIncrement++ % 3;
 
-                if (string.IsNullOrEmpty(fullResult))
-                    dataPkg.SetText($"{testResult}\n");
-                else
-                    dataPkg.SetText($"{fullResult}\n{testResult}\n");
+//                switch (step)
+//                {
+//                    case 0:
+//                        List.SelectedIndex = ScenarioList.Scenarios.Count - 1;
+//                        break;
+//                    case 1:
+//                        List.SelectedIndex = 9;
+//                        break;
 
-                Clipboard.SetContent(dataPkg);
-            }
-        }
+//                    case 2:
+//                        List.SelectedIndex = 27;
+//                        break;
+//                }
 
-        private void OnRendering(object sender, object e)
-        {
-            if (testIncrement != -1)
-            {
-                int step = testIncrement++ % 3;
+//                Drawable = List.SelectedItem as IDrawable;
 
-                switch (step)
-                {
-                    case 0:
-                        List.SelectedIndex = ScenarioList.Scenarios.Count - 1;
-                        break;
-                    case 1:
-                        List.SelectedIndex = 9;
-                        break;
+//                if (testIncrement >= TestIterations)
+//                {
+//                    timer.Stop();
+//                    GlobalVariables.TotalElapsedMM = timer.ElapsedMilliseconds;
 
-                    case 2:
-                        List.SelectedIndex = 27;
-                        break;
-                }
+//                    Elapsed.Text = $"{GlobalVariables.TotalElapsedMM} ms";
+//                    Passes.Text = $"{GlobalVariables.TotalPasses}";
 
-                Drawable = List.SelectedItem as IDrawable;
+//                    testIncrement = -1;
+//                    AddToClipboard();
+//                }
+//            }
+//        }
 
-                if (testIncrement >= TestIterations)
-                {
-                    timer.Stop();
-                    GlobalVariables.TotalElapsedMM = timer.ElapsedMilliseconds;
-
-                    Elapsed.Text = $"{GlobalVariables.TotalElapsedMM} ms";
-                    Passes.Text = $"{GlobalVariables.TotalPasses}";
-
-                    testIncrement = -1;
-                    AddToClipboard();
-                }
-            }
-        }
-
-        private void OnClick(object sender, RoutedEventArgs e)
-        {
-            if (testIncrement == -1)
-            {
-                testIncrement = 0;
-                GlobalVariables.TotalPasses = 0;
-                GlobalVariables.TotalElapsedMM = 0;
-                timer.Reset();
-                timer.Start();
-            }
-            else
-            {
-                testIncrement = -1;
-                timer.Stop();
-            }
-        }
-    }
-}
+//        private void OnClick(object sender, RoutedEventArgs e)
+//        {
+//            if (testIncrement == -1)
+//            {
+//                testIncrement = 0;
+//                GlobalVariables.TotalPasses = 0;
+//                GlobalVariables.TotalElapsedMM = 0;
+//                timer.Reset();
+//                timer.Start();
+//            }
+//            else
+//            {
+//                testIncrement = -1;
+//                timer.Stop();
+//            }
+//        }
+//    }
+//}
