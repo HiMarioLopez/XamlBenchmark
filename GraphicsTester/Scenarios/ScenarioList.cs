@@ -17,7 +17,7 @@ namespace GraphicsTester.Scenarios
                         new DrawLines(),
                         new DrawLinesScaled(),
                         new DrawRectangles(),
-                        new DrawEllipses(),             
+                        new DrawEllipses(),
                         new DrawRoundedRectangles(),
                         new DrawArcs(),
                         new DrawArcs(true),
@@ -58,7 +58,6 @@ namespace GraphicsTester.Scenarios
                         new FilledArcDirection(),
                         new ClipRect(),
                         new SubtractFromClip(),
-                        new GeneralTest1(),
                     };
                 }
 

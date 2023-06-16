@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Windows.Media;
 
 using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Xaml;
+using Microsoft.Maui.Graphics.Skia;
 
 using GraphicsTester.Scenarios;
 
@@ -12,8 +12,6 @@ namespace XamlBenchmarkWPF
 {
     public partial class MainWindow : Window
     {
-        private readonly XamlCanvas canvas = new XamlCanvas();
-        private IDrawable drawable;
         const int TestIterations = GlobalVariables.TestCount;
         int testIncrement = -1;
         Stopwatch timer = new Stopwatch();
@@ -26,16 +24,15 @@ namespace XamlBenchmarkWPF
 
         public void Initialize()
         {
-            canvas.Canvas = Canvas;
+            this.GraphicsView.BackgroundColor = Microsoft.Maui.Graphics.Colors.White;
 
             foreach (var scenario in ScenarioList.Scenarios)
             {
                 List.Items.Add(scenario);
             }
-
+            List.SelectionChanged += OnSelectionChanged;
             List.SelectedIndex = 0;
-            List.SelectionChanged += (source, args) => Drawable = List.SelectedItem as IDrawable;
-            Drawable = List.SelectedItem as IDrawable;
+
             this.SizeChanged += (source, args) => Draw();
 
             CompositionTarget.Rendering += OnRendering;
@@ -43,23 +40,26 @@ namespace XamlBenchmarkWPF
 
         public IDrawable Drawable
         {
-            get => drawable;
             set
             {
-                drawable = value;
+                this.GraphicsView.Drawable = value;
                 Draw();
             }
         }
 
         private void Draw()
         {
-            if (drawable != null)
-            {
-                using (canvas.CreateSession())
-                {
-                    drawable.Draw(canvas, new RectangleF(0, 0, (float)Canvas.Width, (float)Canvas.Height));
-                }
-            }
+            this.GraphicsView.Invalidate();
+        }
+
+        private void OnSelectionChanged(object source, System.Windows.Controls.SelectionChangedEventArgs args)
+        {
+            AbstractScenario scenario = (AbstractScenario)List.SelectedItem;
+            Drawable = scenario;
+            this.GraphicsView.Width = scenario.Width;
+            this.GraphicsView.Height = scenario.Height;
+            this.Title = $"WPF Maui Graphics Sample: {scenario}";
+            Draw();
         }
 
         private void AddToClipboard()

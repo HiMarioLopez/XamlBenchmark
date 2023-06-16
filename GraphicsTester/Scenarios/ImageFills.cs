@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Graphics.Platform;
 using System.Reflection;
 
 namespace GraphicsTester.Scenarios
@@ -16,8 +17,9 @@ namespace GraphicsTester.Scenarios
             var assembly = GetType().GetTypeInfo().Assembly;
             using (var stream = assembly.GetManifestResourceStream("GraphicsTester.Resources.swirl_pattern.jpg"))
             {
-                image = GraphicsPlatform.CurrentService.LoadImageFromStream(stream, ImageFormat.Jpeg);
+                image = PlatformImage.FromStream(stream);
             }
+
             // MP! was:
             //using (var stream = assembly.GetManifestResourceStream("GraphicsTester.Resources.swirl_pattern.png"))
             //{
@@ -27,7 +29,7 @@ namespace GraphicsTester.Scenarios
             // MP! fixme: not rendering to canvas
             if (image != null)
             {
-                canvas.SetFillPaint(image.AsPaint(), 0, 0, 0, 0);
+                canvas.SetFillPaint(image.AsPaint(), new RectF(0, 0, 0, 0));
                 canvas.FillRectangle(50, 50, 500, 500);
             }
         }

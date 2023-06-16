@@ -8,15 +8,16 @@ using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
 
 using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Xaml;
+using Microsoft.Maui.Graphics.Skia;
 
 using GraphicsTester.Scenarios;
+using Microsoft.Maui.Graphics.SharpDX;
 
 namespace XamlBenchmarkUWP
 {
     public sealed partial class MainPage : Page
     {
-        private readonly XamlCanvas canvas = new XamlCanvas();
+        private readonly DXCanvas canvas = new DXCanvas();
         private IDrawable drawable;
         const int TestIterations = GlobalVariables.TestCount;
         int testIncrement = -1;
@@ -61,7 +62,7 @@ namespace XamlBenchmarkUWP
             {
                 using (canvas.CreateSession())
                 {
-                    drawable.Draw(canvas, new RectangleF(0, 0, (float)Canvas.Width, (float)Canvas.Height));
+                    drawable.Draw(canvas, new RectF(0, 0, (float)Canvas.Width, (float)Canvas.Height));
                 }
             }
         }

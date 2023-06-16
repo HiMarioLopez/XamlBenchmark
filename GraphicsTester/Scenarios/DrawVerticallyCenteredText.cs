@@ -13,7 +13,7 @@ namespace GraphicsTester.Scenarios
         {
             canvas.StrokeSize = 1;
             canvas.StrokeColor = Colors.Blue;
-            canvas.FontName = "Arial";
+            canvas.Font = new Font("Arial");
             canvas.FontSize = 12f;
 
             canvas.SaveState();
@@ -21,7 +21,7 @@ namespace GraphicsTester.Scenarios
             var rectHeight = 20;
             canvas.Translate(0, 10);
             canvas.DrawRectangle(10, 0, 100, rectHeight);
-            canvas.DrawString("Really Short 1",  10, 0, 100, rectHeight, HorizontalAlignment.Center, VerticalAlignment.Center);
+            canvas.DrawString("Really Short 1", 10, 0, 100, rectHeight, HorizontalAlignment.Center, VerticalAlignment.Center);
             canvas.DrawLine(10, rectHeight / 2, 100, rectHeight / 2);
 
             rectHeight -= 2;
@@ -33,7 +33,7 @@ namespace GraphicsTester.Scenarios
             rectHeight -= 2;
             canvas.Translate(0, 30);
             canvas.DrawRectangle(10, 0, 100, rectHeight);
-            canvas.DrawString("Really Short 3",  10, 0, 100, rectHeight, HorizontalAlignment.Center, VerticalAlignment.Center);
+            canvas.DrawString("Really Short 3", 10, 0, 100, rectHeight, HorizontalAlignment.Center, VerticalAlignment.Center);
             canvas.DrawLine(10, rectHeight / 2, 100, rectHeight / 2);
 
             rectHeight -= 2;
@@ -79,7 +79,7 @@ namespace GraphicsTester.Scenarios
             rectHeight = 20;
             canvas.Translate(0, 10);
             canvas.DrawRectangle(10, 0, 100, rectHeight);
-            canvas.DrawString("Really Short 1",  10, 0, 100, rectHeight, HorizontalAlignment.Center, VerticalAlignment.Bottom);
+            canvas.DrawString("Really Short 1", 10, 0, 100, rectHeight, HorizontalAlignment.Center, VerticalAlignment.Bottom);
             canvas.DrawLine(10, rectHeight / 2, 100, rectHeight / 2);
 
             rectHeight -= 2;
@@ -104,7 +104,7 @@ namespace GraphicsTester.Scenarios
 
             canvas.SaveState();
             canvas.Translate(0, 150);
-            canvas.SetToSystemFont();
+            canvas.Font = new Font("Arial");
 
             rectHeight = 20;
             canvas.Translate(0, 10);
@@ -134,7 +134,7 @@ namespace GraphicsTester.Scenarios
 
             canvas.SaveState();
             canvas.Translate(150, 150);
-            canvas.SetToSystemFont();
+            canvas.Font = new Font("Arial");
 
             rectHeight = 20;
             canvas.Translate(0, 10);
@@ -164,7 +164,7 @@ namespace GraphicsTester.Scenarios
 
             canvas.SaveState();
             canvas.Translate(300, 150);
-            canvas.SetToSystemFont();
+            canvas.Font = new Font("Arial");
 
             rectHeight = 20;
             canvas.Translate(0, 10);

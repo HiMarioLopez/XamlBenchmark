@@ -13,7 +13,7 @@ namespace GraphicsTester.Scenarios
         {
             canvas.StrokeSize = 1;
             canvas.StrokeColor = Colors.Blue;
-            canvas.FontName = "Arial";
+            canvas.Font = new Font("Arial");
             canvas.FontSize = 12f;
 
             const string textShort = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ";
@@ -30,8 +30,8 @@ namespace GraphicsTester.Scenarios
 
                     canvas.DrawRectangle(dx, dy, 190, 140);
 
-                    var horizontalAlignment = (HorizontalAlignment) x;
-                    var verticalAlignment = (VerticalAlignment) y;
+                    var horizontalAlignment = (HorizontalAlignment)x;
+                    var verticalAlignment = (VerticalAlignment)y;
 
                     canvas.DrawString(textShort, dx, dy, 190, 140, horizontalAlignment, verticalAlignment);
                 }
